@@ -1,0 +1,36 @@
+body {
+    background-color: antiquewhite;
+}
+.calc_simples {
+    background-color: red;
+    padding: 15px;
+    width: 140px;
+    border-radius: 10px;
+}
+.display_simples {
+    background-color: grey;
+    width: 100%;
+    text-align: center;
+}
+#resultado {
+    background-color: rgb(177, 165, 165);
+    color: black;
+    width: 100px;
+
+}
+.btn {
+    width: 150px;
+    height: 100px;
+    padding: 2px;
+}
+button {
+    width: 30px;
+    height: 25px;
+    padding: 3px;
+    color: black;
+    margin-top: 2px;
+}
+#igual {
+    background-color: grey;
+    color: white;
+}
