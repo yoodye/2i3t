@@ -1,13 +1,16 @@
 let a = "";
 let b = "";
-let valor = 0;
+let valor = "";
 let executar = "";
+let temPonto = false;
+let desligada = true;
 
-soma = (a,b) => a + b;
-sub = (a,b) => a - b;
-mult = (a,b) => a * b;
-div = (a,b) => a / b;
+soma = (a,b) => Number(a) + Number(b);
+sub = (a,b) => Number(a) - Number(b);
+mult = (a,b) => Number(a) * Number(b);
+div = (a,b) => Number(a) / Number(b);
 raiz = a => Math.sqrt(a);
+
 equacao2Grau = (a,b,c) =>{
     let delta = sub(mult(b,b),mult(4,mult(a,c)));
     if (delta < 0) return "Não possui raiz Real.";
@@ -20,22 +23,56 @@ function mostrar_resultado(){
 }
 function calcular(){
     if(executar != ""){
-        if(executar = "soma") mostrar_resultado(soma(a,b));
-        if(executar = "sub") mostrar_resultado(sub(a,b));
-        if(executar = "div") mostrar_resultado(div(a,b));
-        if(executar = "mult") mostrar_resultado(mult(a,b));
+        b = valor;
+        if(executar == "soma") valor = soma(a,b);
+        if(executar == "sub") valor = sub(a,b);
+        if(executar == "div") valor = div(a,b);
+        if(executar =="mult") valor = mult(a,b);
+        if(executar =="porc") valor = mult(div(a/100),b);
+        if(executar =="raiz") valor = raiz(a);
+
+        mostrar_resultado();
         executar = "";
         a = ""
         b = "";
+        valor = "";
+        temPonto = false;
     }
 }
+function desliga(){
+    if(desligada){
+        zerar();
+    }else{
+       zerar();
+        mostrar_resultado();
+    }
+    desligada = !desligada;
+}
+function zerar(){
+    a = "";
+    b = "";
+    valor = "0";
+    executar = "";
+        mostrar_resultado();
+     valor = "";
+}
+    function operacao(op){
+            executar = op;
+            a = valor;
+            valor = "";
+    }
 function digitando(tecla){
-   if(executar == ""){
-       a += tecla;
-       alert(a);
-   }else{
-       b += tecla;
-   } 
+    if(tecla == "."){
+        if(!temPonto){
+            mostrar_resultado();
+         temPonto = true;
+
+        }
+        return;
+
+    }
+  valor = valor + tecla;
+  mostrar_resultado();
    
 
 }
