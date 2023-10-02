@@ -3,7 +3,7 @@ let b = "";
 let valor = "";
 let executar = "";
 let temPonto = false;
-let desligada = true;
+let desligada = false;
 
 soma = (a,b) => Number(a) + Number(b);
 sub = (a,b) => Number(a) - Number(b);
@@ -22,14 +22,15 @@ function mostrar_resultado(){
     document.getElementById("resultado").value = valor;
 }
 function calcular(){
+    if (desligada) return;
     if(executar != ""){
         b = valor;
         if(executar == "soma") valor = soma(a,b);
         if(executar == "sub") valor = sub(a,b);
         if(executar == "div") valor = div(a,b);
-        if(executar =="mult") valor = mult(a,b);
-        if(executar =="porc") valor = mult(div(a/100),b);
-        if(executar =="raiz") valor = raiz(a);
+        if(executar == "mult") valor = mult(a,b);
+        if(executar == "porc") valor = mult(div(a/100),b);
+        if(executar == "raiz") valor = raiz(a);
 
         mostrar_resultado();
         executar = "";
@@ -40,15 +41,32 @@ function calcular(){
     }
 }
 function desliga(){
+    desligada = !desligada;
     if(desligada){
         zerar();
     }else{
        zerar();
         mostrar_resultado();
     }
-    desligada = !desligada;
+    return desligada;
+}
+desliga();
+function calcular_raiz(){
+    if(valor == ""){
+        valor == 0;
+    }
+    valor = raiz(valor);
+    mostrar_resultado();
+}
+function porcentagem(){
+    if(executar == "mult"){
+        b = valor;
+        valor = div (mult(a,b),100);
+        mostrar_resultado();
+    }
 }
 function zerar(){
+    if(desligada) return;
     a = "";
     b = "";
     valor = "0";
@@ -57,6 +75,7 @@ function zerar(){
      valor = "";
 }
     function operacao(op){
+        if(desligada) return;
             executar = op;
             a = valor;
             valor = "";
